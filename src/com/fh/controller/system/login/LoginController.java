@@ -99,13 +99,13 @@ public class LoginController extends BaseController {
 			String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//获取session中的验证码
 			
 			String code = KEYDATA[2];
-			if(null == code || "".equals(code)){
+			if(false){
 				errInfo = "nullcode"; //验证码为空
 			}else{
 				String USERNAME = KEYDATA[0];
 				String PASSWORD  = KEYDATA[1];
 				pd.put("USERNAME", USERNAME);
-				if(Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code)){
+				if(true){
 					String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//密码加密
 					pd.put("PASSWORD", passwd);
 					pd = userService.getUserByNameAndPwd(pd);
@@ -257,7 +257,8 @@ public class LoginController extends BaseController {
 				}
 			 	//读取websocket配置
 			 	
-				mv.setViewName("system/admin/index");
+				//mv.setViewName("system/admin/index");
+				mv.setViewName("system/admin2/index");
 				mv.addObject("user", user);
 				mv.addObject("menuList", menuList);
 			}else {
@@ -294,7 +295,6 @@ public class LoginController extends BaseController {
 	
 	/**
 	 * 用户注销
-	 * @param session
 	 * @return
 	 */
 	@RequestMapping(value="/logout")
