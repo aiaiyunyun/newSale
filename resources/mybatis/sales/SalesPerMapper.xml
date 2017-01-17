@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SalesPerMapper">
+
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        INSERT INTO sale_room (
+            sr_create_date,
+            sr_back_date,
+            sr_rubber_amount,
+            sr_sale_all_amount,
+            user_id,
+            bak1,
+            sr_goods_num,
+            sr_tax,
+            sr_sale_amount,
+            sr_state,
+            sr_end_back_payment,
+            sr_create_user,
+            bak2,
+            sr_freight,
+            sr_is_back,
+            del_flag,
+            sr_bak,
+            sr_is_device_award,
+            sr_province,
+            sr_sale_date
+        )
+        VALUES
+            (
+                '2017-01-12 12:23:22',
+                '2017-01-12',
+                '1',
+                '1',
+                '1',
+                NULL,
+                '1',
+                '1',
+                '1',
+                '1',
+                '2017-01-26',
+                '1',
+                NULL,
+                '1',
+                '1',
+                '1',
+                '1',
+                '1',
+                '1',
+                '2017-01-19'
+            );
+    </insert>
+
+
+</mapper>

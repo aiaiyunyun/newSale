@@ -264,8 +264,7 @@ public class LoginController extends BaseController {
 			}else {
 				mv.setViewName("system/admin/login");//session失效后跳转登录页面
 			}
-			
-			
+
 		} catch(Exception e){
 			mv.setViewName("system/admin/login");
 			logger.error(e.getMessage(), e);

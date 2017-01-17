@@ -3,6 +3,11 @@ package com.fh.controller.base;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fh.entity.system.User;
+import com.fh.entity.vo.JsonVo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +38,10 @@ public class BaseController {
 	public ModelAndView getModelAndView(){
 		return new ModelAndView();
 	}
+
+	public JsonVo getJsonVo(){
+		return new JsonVo();
+	}
 	
 	/**
 	 * 得到request对象
@@ -41,6 +50,13 @@ public class BaseController {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		
 		return request;
+	}
+
+	public User getCurrentUser(){
+		Subject currentUser = SecurityUtils.getSubject();
+		Session session = currentUser.getSession();
+
+		return (User)session.getAttribute(Const.SESSION_USER);
 	}
 
 	/**
