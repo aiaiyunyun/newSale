@@ -6,51 +6,59 @@
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         INSERT INTO sale_room (
-            sr_create_date,
-            sr_back_date,
-            sr_rubber_amount,
-            sr_sale_all_amount,
-            user_id,
-            bak1,
-            sr_goods_num,
-            sr_tax,
-            sr_sale_amount,
-            sr_state,
-            sr_end_back_payment,
-            sr_create_user,
-            bak2,
-            sr_freight,
-            sr_is_back,
-            del_flag,
-            sr_bak,
-            sr_is_device_award,
-            sr_province,
-            sr_sale_date
+        sr_create_date,
+        sr_back_date,
+        sr_rubber_amount,
+        sr_sale_all_amount,
+        user_id,
+        bak1,
+        sr_goods_num,
+        sr_tax,
+        sr_sale_amount,
+        sr_state,
+        sr_end_back_payment,
+        sr_create_user,
+        bak2,
+        sr_freight,
+        sr_is_back,
+        del_flag,
+        sr_bak,
+        sr_is_device_award,
+        sr_province,
+        sr_sale_date
         )
         VALUES
-            (
-                '2017-01-12 12:23:22',
-                '2017-01-12',
-                '1',
-                '1',
-                '1',
-                NULL,
-                '1',
-                '1',
-                '1',
-                '1',
-                '2017-01-26',
-                '1',
-                NULL,
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '1',
-                '2017-01-19'
-            );
+        (
+        '2017-01-12 12:23:22',
+        '2017-01-12',
+        '1',
+        '1',
+        '1',
+        NULL,
+        '1',
+        '1',
+        '1',
+        '1',
+        '2017-01-26',
+        '1',
+        NULL,
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        '2017-01-19'
+        );
     </insert>
-
+    <select id="datalistPage" parameterType="page" resultType="pd">
+        select * from (
+            SELECT  s.USERNAME AS payName,sr.*
+            FROM sale_room sr
+            INNER JOIN sys_user s ON s.USER_ID = sr.user_id
+            WHERE sr.del_flag = 1
+            ORDER BY sr.sr_create_date DESC
+        ) a
+    </select>
 
 </mapper>
