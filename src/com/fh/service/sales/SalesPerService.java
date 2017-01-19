@@ -1,10 +1,12 @@
 package com.fh.service.sales;
 
 import com.fh.dao.DaoSupport;
+import com.fh.entity.Page;
 import com.fh.util.PageData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 创建人: 徐众垚
@@ -22,5 +24,10 @@ public class SalesPerService {
     public void save(PageData pd) throws Exception {
         dao.save("SalesPerMapper.save",pd);
     }
-
+    /*
+    *列表
+    */
+    public List<PageData> list(Page page)throws Exception{
+        return (List<PageData>)dao.findForList("SalesPerMapper.datalistPage", page);
+    }
 }

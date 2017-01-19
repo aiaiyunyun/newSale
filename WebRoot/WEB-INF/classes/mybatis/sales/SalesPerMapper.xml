@@ -46,5 +46,13 @@
             );
     </insert>
 
-
+    <select id="datalistPage" parameterType="page" resultType="pd">
+       select * from (
+        SELECT  s.USERNAME AS payName,sr.*
+        FROM sale_room sr
+        INNER JOIN sys_user s ON s.USER_ID = sr.user_id
+        WHERE sr.del_flag = 1
+        ORDER BY sr.sr_create_date DESC
+        ) a
+    </select>
 </mapper>

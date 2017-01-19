@@ -1,6 +1,8 @@
 package com.fh.controller.sales;
 
 import com.fh.controller.base.BaseController;
+import com.fh.entity.JqGridPageView;
+import com.fh.entity.Page;
 import com.fh.entity.sales.Dictionary;
 import com.fh.entity.sales.SalesRoom;
 import com.fh.entity.system.User;
@@ -18,6 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -89,6 +95,37 @@ public class SalesPerformance extends BaseController{
             json.setMsg("保存失败");
         }
         return json;
+    }
+    @RequestMapping(value = "/show")
+    public ModelAndView show() throws Exception {
+        ModelAndView mv = getModelAndView();
+        mv.setViewName("sales/sales_list_view");
+        return mv;
+    }
+    @RequestMapping(value="/salesList",method = RequestMethod.GET)
+    @ResponseBody
+    public JqGridPageView<PageData> receiveList(Page page){
+        JqGridPageView<PageData> infoList = new JqGridPageView<>();
+        PageData pd = new PageData();
+        try{
+            pd = this.getPageData();
+            String KEYW = pd.getString("keyword");
+            if(null != KEYW && !"".equals(KEYW)){
+                KEYW = KEYW.trim();
+                pd.put("KEYW", KEYW);
+            }
+            page.setPd(pd);
+            List<PageData> varList = salesPerService.list(page);
+            infoList.setMaxResults(10);
+            infoList.setRows(varList);
+
+            infoList.setRecords(page.getTotalResult());
+        } catch (Exception e) {
+            logger.error(e.getMessage(),e);
+        }
+        logAfter(logger);
+
+        return infoList;
     }
 
 }
