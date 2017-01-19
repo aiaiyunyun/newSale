@@ -2,10 +2,12 @@ package com.fh.service.sales;
 
 import com.fh.dao.DaoSupport;
 import com.fh.entity.Page;
+import com.fh.entity.sales.Vasion;
 import com.fh.util.PageData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,5 +31,9 @@ public class SalesPerService {
     */
     public List<PageData> list(Page page)throws Exception{
         return (List<PageData>)dao.findForList("SalesPerMapper.datalistPage", page);
+    }
+
+    public List<Vasion> selectPeo(PageData pd)throws Exception{
+        return  (List<Vasion>) dao.findForList("SalesPerMapper.selectPeo", pd);
     }
 }

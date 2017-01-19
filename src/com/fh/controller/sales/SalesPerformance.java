@@ -5,6 +5,7 @@ import com.fh.entity.JqGridPageView;
 import com.fh.entity.Page;
 import com.fh.entity.sales.Dictionary;
 import com.fh.entity.sales.SalesRoom;
+import com.fh.entity.sales.Vasion;
 import com.fh.entity.system.User;
 import com.fh.entity.vo.JsonVo;
 import com.fh.service.sales.DictionaryService;
@@ -12,6 +13,7 @@ import com.fh.service.sales.SalesPerService;
 import com.fh.util.DateUtil;
 import com.fh.util.PageData;
 import com.google.gson.JsonObject;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -127,5 +132,15 @@ public class SalesPerformance extends BaseController{
 
         return infoList;
     }
-
+    @RequestMapping(value="/selectPeo",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonVo  selectPeo(HttpServletResponse response) throws Exception{
+        JsonVo<List<Vasion>> json = new JsonVo<>();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        List list = salesPerService.selectPeo(pd);
+        JSONArray Js = JSONArray.fromObject(list);
+        json.setT(list);
+        return json;
+    }
 }

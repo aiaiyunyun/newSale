@@ -91,8 +91,8 @@ public class ChatServer extends WebSocketServer{
 		result.element("type", "user_join");
 		result.element("user", "<a onclick=\"toUserMsg('"+user+"');\">"+user+"</a>");
 		ChatServerPool.sendMessage(result.toString());				//把当前用户加入到所有在线用户列表中
-		String joinMsg = "{\"from\":\"[系统]\",\"content\":\""+user+"上线了\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
-		ChatServerPool.sendMessage(joinMsg);						//向所有在线用户推送当前用户上线的消息
+//		String joinMsg = "{\"from\":\"[系统]\",\"content\":\""+user+"上线了\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
+//		ChatServerPool.sendMessage(joinMsg);						//向所有在线用户推送当前用户上线的消息
 		result = new JSONObject();
 		result.element("type", "get_online_user");
 		ChatServerPool.addUser(user,conn);							//向连接池添加当前的连接对象
@@ -112,8 +112,8 @@ public class ChatServer extends WebSocketServer{
 			result.element("type", "user_leave");
 			result.element("user", "<a onclick=\"toUserMsg('"+user+"');\">"+user+"</a>");
 			ChatServerPool.sendMessage(result.toString());			//把当前用户从所有在线用户列表中删除
-			String joinMsg = "{\"from\":\"[系统]\",\"content\":\""+user+"下线了\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
-			ChatServerPool.sendMessage(joinMsg);					//向在线用户发送当前用户退出的消息
+//			String joinMsg = "{\"from\":\"[系统]\",\"content\":\""+user+"下线了\",\"timestamp\":"+new Date().getTime()+",\"type\":\"message\"}";
+//			ChatServerPool.sendMessage(joinMsg);					//向在线用户发送当前用户退出的消息
 		}
 	}
 	public static void main( String[] args ) throws InterruptedException , IOException {

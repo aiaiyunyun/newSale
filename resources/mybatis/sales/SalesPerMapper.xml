@@ -60,5 +60,13 @@
             ORDER BY sr.sr_create_date DESC
         ) a
     </select>
+    <!--查询销售人员-->
+    <select id="selectPeo" resultType="pd">
+        SELECT sr.role_name,su.Name AS userName,su.user_id AS userId
+        FROM
+        sys_user su
+        INNER JOIN sys_role sr ON su.`ROLE_ID` = sr.`ROLE_ID`
+        WHERE sr.`ROLE_ID`='bb676ea2f86f482bad8a1cfaf6b141fe'
+    </select>
 
 </mapper>

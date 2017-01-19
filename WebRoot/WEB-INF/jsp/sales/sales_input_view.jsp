@@ -416,7 +416,6 @@
     </div>
 
 </div>--%>
-
 <!-- 全局js -->
 <script src="<%=path%>/static/hplus/js/jquery.min.js?v=2.1.4"></script>
 <script src="<%=path%>/static/hplus/js/bootstrap.min.js?v=3.3.6"></script>
@@ -491,11 +490,11 @@
     });
 </script>
 <script type="text/javascript">
-    var testBsSuggest = $("#test").bsSuggest({
-        url: "static/js/data.json",
-        /*effectiveFields: ["userName", "shortAccount"],
+    /*var testBsSuggest = $("#test").bsSuggest({
+        url: "sales/selectPeo",
+        /!*effectiveFields: ["userName", "shortAccount"],
          searchFields: [ "shortAccount"],
-         effectiveFieldsAlias:{userName: "姓名"},*/
+         effectiveFieldsAlias:{userName: "姓名"},*!/
         idField: "userId",
         keyField: "userName"
     }).on('onDataRequestSuccess', function (e, result) {
@@ -504,6 +503,51 @@
         console.log('onSetSelectValue: ', keyword);
     }).on('onUnsetSelectValue', function (e) {
         console.log("onUnsetSelectValue");
+    });*/
+    var proSuggest = $("#test").bsSuggest({
+        indexId: 0, //data.value 的第几个数据，作为input输入框的内容
+        indexKey: 1, //data.value 的第几个数据，作为input输入框的内容
+        allowNoKeyword: false, //是否允许无关键字时请求数据
+        multiWord: true, //以分隔符号分割的多关键字支持
+        separator: ",", //多关键字支持时的分隔符，默认为空格
+        getDataMethod: "url", //获取数据的方式，总是从 URL 获取
+        effectiveFieldsAlias: {
+            userId: "用户编号",
+            name: "名字",
+            dep: "部门"
+        },
+        showHeader: true,
+        url: 'sales/selectPeo',
+        /*优先从url ajax 请求 json 帮助数据，注意最后一个参数为关键字请求参数*/
+        /*如果从 url 获取数据，并且需要跨域，则该参数必须设置*/
+        processData: function (json) { // url 获取数据时，对数据的处理，作为 getData 的回调函数
+            var i, len, data = {
+                value: []
+            };
+
+
+
+
+
+            if (!json || !json.result || json.result.length == 0) {
+                return false;
+            }
+
+            //console.log(json);
+            len = json.result.length;
+
+            for (i = 0; i < len; i++) {
+                data.value.push({
+                    "userId": json.result[i][0],
+                    "userName": json.result[i][1],
+                    "dep": json.result[i][2]
+                });
+                console.log(json.result())
+                vdata.put(json.result[i][1],json.result[i][0]);
+            }
+            //console.log(data);
+            return data;
+        }
     });
 </script>
 </body>
