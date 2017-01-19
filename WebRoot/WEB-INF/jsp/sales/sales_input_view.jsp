@@ -47,14 +47,38 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <span class="text-muted small pull-right">当前日期：<i class="fa fa-clock-o"></i> <span id="currenttime"></span></span>
-                    <h2>信息录入</h2>
+                    <h2>销售信息录入</h2>
                     <p>
-                        助理录入销售信息
+                        必填信息
                     </p>
 
                     <form class="form-horizontal m-t" id="_sales_save" style="margin-right: 30px;">
 
 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">销售人员</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="test">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                        </ul>
+                                    </div>
+                                    <!-- /btn-group -->
+                                </div>
+                            </div>
+
+                            <label class="col-sm-2 control-label">产品个数</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="srGoodsNum" name="srGoodsNum" type="number" class="form-control" required="" aria-required="true">
+                                    <span class="input-group-addon">个</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group" id="data_1">
                             <label class="col-sm-2 control-label">销售日期</label>
 
@@ -71,17 +95,53 @@
                                     <input id="srBackDate" name="srBackDate" type="text" class="form-control" required="" aria-required="true" value="2012-11-11">
                                 </div>
                             </div>--%>
-                            <label class="col-sm-2 control-label">回款截止日期</label>
+                            <label class="col-sm-2 control-label">销售总额</label>
+
                             <div class="col-sm-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input name="srEndBackPayment" type="text" disabled class="form-control" required="" aria-required="true">
-                                    <input name="srEndBackPayment" type="hidden">
+                                <div class="input-group">
+                                    <input id="srSaleAllAmount" name="srSaleAllAmount" type="text" class="form-control float" required="" aria-required="true">
+                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
                                 </div>
                             </div>
+
                         </div>
 
+
+
+
+
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">产品运费</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="srFreight" name="srFreight" type="text" class="form-control float" required="" aria-required="true">
+                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
+                                </div>
+                            </div>
+
+                            <label class="col-sm-2 control-label">胶圈费用</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="srRubberAmount" name="srRubberAmount" type="text" class="form-control float" required="" aria-required="true">
+                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <p>
+                            可选信息
+                        </p>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">设备提成</label>
+                            <div class="col-sm-4">
+                                <select id="srIsDeviceAward" name="srIsDeviceAward" class="form-control" required="" aria-required="true">
+                                    <option value="-1">请选择是否设备提成</option>
+                                    <c:forEach items="${isDeviceAward}" var="var">
+                                        <option value="${var.dataValue}">${var.dataName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                             <label class="col-sm-2 control-label">是否回款</label>
                             <div class="col-sm-4">
                                 <select id="srIsBack" name="srIsBack" class="form-control" required="" aria-required="true">
@@ -92,20 +152,10 @@
 
                                 </select>
                             </div>
-                            <label class="col-sm-2 control-label">税点</label>
-                            <div class="col-sm-4">
-                                <select id="srTax" name="srTax" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择税点</option>
-                                    <c:forEach items="${tax}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
 
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">销往省份</label>
-
                             <div class="col-sm-4">
                                 <select id="srProvince" name="srProvince" class="form-control" required="" aria-required="true">
                                     <option value="-1">请选择城市</option>
@@ -114,68 +164,6 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <label class="col-sm-2 control-label">产品个数</label>
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srGoodsNum" name="srGoodsNum" type="number" class="form-control" required="" aria-required="true">
-                                    <span class="input-group-addon">个</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">胶圈费</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srRubberAmount" name="srRubberAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
-                            <label class="col-sm-2 control-label">运费</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srFreight" name="srFreight" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">是否设备提成</label>
-                            <div class="col-sm-4">
-                                <select id="srIsDeviceAward" name="srIsDeviceAward" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择是否设备提成</option>
-                                    <c:forEach items="${isDeviceAward}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label">销售金额</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srSaleAmount" name="srSaleAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">销售金额总额</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srSaleAllAmount" name="srSaleAllAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
                             <label class="col-sm-2 control-label">备注信息</label>
                             <div class="col-sm-4">
                                 <%--<input id="fpNote" name="fpNote" type="text" class="form-control" required="" aria-required="true">--%>
@@ -184,6 +172,39 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="hr-line-dashed"></div>
+                        <p>
+                            参考信息
+                        </p>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">销售金额</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input id="srSaleAmount" name="srSaleAmount" type="text" disabled class="form-control float" required="" aria-required="true">
+                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
+                                </div>
+                            </div>
+                           <%-- <label class="col-sm-2 control-label">税点</label>
+                            <div class="col-sm-4">
+                                <select id="srTax" name="srTax" class="form-control" required="" aria-required="true">
+                                    <option value="-1">请选择税点</option>
+                                    <c:forEach items="${tax}" var="var">
+                                        <option value="${var.dataValue}">${var.dataName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>--%>
+                            <label class="col-sm-2 control-label">回款截止日期</label>
+                            <div class="col-sm-4">
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input name="srEndBackPayment" type="text" disabled class="form-control" required="" aria-required="true">
+                                    <input name="srEndBackPayment" type="hidden">
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </form>
 
                     <div style="text-align: right;padding-right: 30px;">
@@ -460,141 +481,7 @@
 
         //Jqgrid setting
         $.jgrid.defaults.styleUI = 'Bootstrap';
-        /*$("#table_list_1").jqGrid({
-         url: "keyanhetong/getKyList",
-         datatype: "json",
-         height: 'auto',
-         autowidth: true,
-         shrinkToFit: true,
-         rowNum: 10,
-         rowList: [10, 20, 30],
-         colNames: ['ID','序号','合同编号', '合同名称', '项目来源', '负责部门', '负责人', '开始时间', '结束时间','第一金额', '第二金额', '第三金额','总金额',
-         '项目来源id','负责部门id'],//, '创建时间','创建人'
-         colModel: [
-         {
-         name: 'kyId',
-         index: 'kyId',
-         width: 40,
-         hidden: true
-         },
-         {
-         name: 'xulie',
-         index: 'xulie',
-         width: 40,
-         sorttype: "int",
-         formatter: "int"
-         },
-         {
-         name: 'kyNumber',
-         index: 'kyNumber',
-         width: 60,
-         sorttype: "int",
-         formatter: "int"
-         },
-         {
-         name: 'kyName',
-         index: 'kyName',
-         width: 80
-         },
-         {
-         name: 'proTypeName',
-         index: 'proTypeName',
-         width: 50
-         },
-         {
-         name: 'depName',
-         index: 'depName',
-         width: 60
-         },
-         {
-         name: 'fuzer',
-         index: 'fuzer',
-         width: 50
-         },
-         {
-         name: 'kyStartDateStr',
-         index: 'kyStartDateStr',
-         width: 60
-         },
-         {
-         name: 'kyEndDateStr',
-         index: 'kyEndDateStr',
-         width: 50
-         },
-         {
-         name: 'kyAmount',
-         index: 'kyAmount',
-         width: 50,
-         sorttype: "float",
-         formatter: "number"
-         },
-         {
-         name: 'kyAmountTwo',
-         index: 'kyAmountTwo',
-         width: 50,
-         sorttype: "float",
-         formatter: "number"
-         },
-         {
-         name: 'kyAmountThree',
-         index: 'kyAmountThree',
-         width: 50,
-         sorttype: "float",
-         formatter: "number"
-         },
-         {
-         name: 'kySumAmount',
-         index: 'kySumAmount',
-         width: 60,
-         sorttype: "float",
-         formatter: "number"
-         },
-         {
-         name: "kyProType",
-         index: "kyProType",
-         hidden: true
 
-         },
-         {
-         name: "kyDutyDep",
-         index: "kyDutyDep",
-         hidden: true
-
-         }
-         ],
-         pager: "#pager_list_1",
-         viewrecords: true,
-         caption: "科研项目列表",
-         hidegrid: false,
-         onSelectRow: function (rowid) {
-         var rowData = $('#table_list_1').jqGrid('getRowData',rowid);
-         //console.log(rowData)
-         $('#htname').html(rowData.kyName);
-         $('#htid').val(rowData.kyId);
-         $('#rowid').val(rowid);
-
-         //console.log(rowData);
-         $('#kyNumber').val(rowData.kyNumber);
-         $('#kyName').val(rowData.kyName);
-         display(rowData.kyProType,$('#kyProType'));
-         display(rowData.kyDutyDep,$('#kyDutyDep'));
-         $('#kyDutyId').val(rowData.fuzer);
-         $('#kyStartDate').val(rowData.kyStartDateStr);
-         $('#kyEndDate').val(rowData.kyEndDateStr);
-         $('#kyAmount').val(rowData.kyAmount);
-         $('#kyAmountTwo').val(rowData.kyAmountTwo);
-         $('#kyAmountThree').val(rowData.kyAmountThree);
-         //console.log('Click');
-         },
-         ondblClickRow: function(rowid){
-         //console.log('dbClick');
-         var rowData = $('#table_list_1').jqGrid('getRowData',rowid);
-         //alert(rowData.kyId)
-         location.href="keyanhetong/details?id="+rowData.kyId;
-         //console.log(rowData)
-         }
-
-         });*/
 
         $(window).bind('resize', function () {
             var width = $('.jqGrid_wrapper').width();
@@ -603,7 +490,22 @@
 
     });
 </script>
-
+<script type="text/javascript">
+    var testBsSuggest = $("#test").bsSuggest({
+        url: "static/js/data.json",
+        /*effectiveFields: ["userName", "shortAccount"],
+         searchFields: [ "shortAccount"],
+         effectiveFieldsAlias:{userName: "姓名"},*/
+        idField: "userId",
+        keyField: "userName"
+    }).on('onDataRequestSuccess', function (e, result) {
+        console.log('onDataRequestSuccess: ', result);
+    }).on('onSetSelectValue', function (e, keyword) {
+        console.log('onSetSelectValue: ', keyword);
+    }).on('onUnsetSelectValue', function (e) {
+        console.log("onUnsetSelectValue");
+    });
+</script>
 </body>
 
 </html>
