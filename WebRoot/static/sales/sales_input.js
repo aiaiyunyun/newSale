@@ -2,6 +2,19 @@
 $(function(){
 
     $('.float').blur(function(){
+
+        var reg = new RegExp("^[0-9]*$");
+        if(!reg.test($(this).val())){
+            $(this).tips({
+                side : 1,
+                msg : "格式不正确",
+                bg : '#FF6461',
+                time : 2
+            });
+            $(this).val('');
+            return;
+        }
+
         if($(this).val().length!=0){
             $(this).val(fmoney($(this).val(),2));
         }
@@ -22,7 +35,13 @@ $(function(){
      }
      $('#srSaleAllAmount').val(fmoney(f));
      });*/
+    var mydate = new Date();
+    $('#currenttime').html(mydate.toLocaleString());
 
+    var timer = setInterval( function(){
+        var mydate1 = new Date();
+        $('#currenttime').html(mydate1.toLocaleString());
+    }, 1000);
 });
 
 function dateadd(){

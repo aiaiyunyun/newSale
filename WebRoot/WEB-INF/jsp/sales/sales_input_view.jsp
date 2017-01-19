@@ -35,6 +35,7 @@
 
     <style>
         .jqGrid_wrapper{background: white;}
+        textarea{ resize:none;}
     </style>
 </head>
 
@@ -45,10 +46,10 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-content">
-                    <span class="text-muted small pull-right">当前日期：<i class="fa fa-clock-o"></i> 2015-09-01 12:00</span>
+                    <span class="text-muted small pull-right">当前日期：<i class="fa fa-clock-o"></i> <span id="currenttime"></span></span>
                     <h2>信息录入</h2>
                     <p>
-                        所有客户必须通过邮件验证
+                        助理录入销售信息
                     </p>
 
                     <form class="form-horizontal m-t" id="_sales_save" style="margin-right: 30px;">
