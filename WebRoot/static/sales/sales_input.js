@@ -129,12 +129,11 @@ function validate(){
     var srRubberAmount = $('#srRubberAmount');
     var srIsDeviceAward = $('#srIsDeviceAward');
     var srSaleAllAmount = $('#srSaleAllAmount');
-
-    var srTax = $('#srTax');
     var srGoodsNum = $('#srGoodsNum');
     var srFreight = $('#srFreight');
     var srSaleAmount = $('#srSaleAmount');
-
+    var srBak = $('#srBak');
+    var srBackDate = $('#srBackDate')
 
     if(isNull(srSaleDate.val())){
         srSaleDate.tips({
@@ -144,7 +143,8 @@ function validate(){
             time : 5
         });
         return false;
-    }else if(isNull(srIsBack.val()) || srIsBack.val()=='-1'){
+    }
+    else if(isNull(srIsBack.val()) || srIsBack.val()=='-1'){
         srIsBack.tips({
             side : 1,
             msg : "请选择是否回款",
@@ -152,7 +152,8 @@ function validate(){
             time : 5
         });
         return false;
-    }else if(isNull(srProvince.val()) || srProvince.val()=='-1'){
+    }
+    else if(isNull(srProvince.val()) || srProvince.val()=='-1'){
         srProvince.tips({
             side : 1,
             msg : "请选择销往省份",
@@ -160,7 +161,8 @@ function validate(){
             time : 5
         });
         return false;
-    }else if(isNull(srRubberAmount.val())){
+    }
+    else if(isNull(srRubberAmount.val())){
         srRubberAmount.tips({
             side : 1,
             msg : "请填写胶圈费",
@@ -168,7 +170,8 @@ function validate(){
             time : 5
         });
         return false;
-    }else if(isNull(srIsDeviceAward.val()) || srIsDeviceAward.val()=='-1'){
+    }
+    else if(isNull(srIsDeviceAward.val()) || srIsDeviceAward.val()=='-1'){
         srIsDeviceAward.tips({
             side : 1,
             msg : "请选择是否设备提成",
@@ -176,23 +179,11 @@ function validate(){
             time : 5
         });
         return false;
-    }else if(isNull(srSaleAllAmount.val())){
+    }
+    else if(isNull(srSaleAllAmount.val())){
         srSaleAllAmount.tips({
             side : 1,
             msg : "请填写销售金额总额",
-            bg : '#FF6461',
-            time : 5
-        });
-        return false;
-    }
-
-
-
-
-    else if(isNull(srTax.val()) || srTax.val()=='-1'){
-        srTax.tips({
-            side : 1,
-            msg : "请选择税点",
             bg : '#FF6461',
             time : 5
         });
@@ -224,7 +215,8 @@ function validate(){
             time : 5
         });
         return false;
-    }else {
+    }
+    else {
         return true;
     }
 }

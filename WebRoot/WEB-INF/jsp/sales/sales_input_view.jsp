@@ -96,7 +96,6 @@
                                 </div>
                             </div>--%>
                             <label class="col-sm-2 control-label">销售总额</label>
-
                             <div class="col-sm-4">
                                 <div class="input-group">
                                     <input id="srSaleAllAmount" name="srSaleAllAmount" type="text" class="form-control float" required="" aria-required="true">
@@ -105,11 +104,6 @@
                             </div>
 
                         </div>
-
-
-
-
-
                         <div class="form-group">
                             <label class="col-sm-2 control-label">产品运费</label>
                             <div class="col-sm-4">
@@ -197,7 +191,7 @@
                             <div class="col-sm-4">
                                 <div class="input-group date">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input name="srEndBackPayment" type="text" disabled class="form-control" required="" aria-required="true">
+                                    <input id="srBackDate" name="srEndBackPayment" type="text" disabled class="form-control" required="" aria-required="true">
                                     <input name="srEndBackPayment" type="hidden">
                                 </div>
                             </div>
@@ -217,205 +211,6 @@
     </div>
 </div>
 
-<%--<div class="wrapper wrapper-content">
-    <div class="row">
-        <p style="padding-left: 18px;">
-            <button type="button" class="btn btn-w-m btn-primary" id="addPro">新增</button>
-            <button type="button" class="btn btn-w-m btn-warning" id="editPro">编辑</button>
-            <button type="button" class="btn btn-w-m btn-danger" id="delete">删除</button>
-        </p>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="ibox">
-                <div class="jqGrid_wrapper">
-                    <table id="table_list_1"></table>
-                    <div id="pager_list_1"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 确认删除模态窗口 -->
-    <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">删除合同</h4>
-                </div>
-                <div class="modal-body">
-                    <p>确定要删除&nbsp;<strong id="htname" style="color: red;"></strong>&nbsp;吗?</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="close_del_hetong" type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="del();">确定</button>
-                </div>
-            </div>
-        </div>
-
-        <input type="hidden" id="htid">
-        <input type="hidden" id="rowid">
-    </div>
-
-    <!-- 新增合同模态窗口 -->
-    <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="modal5title">新增</h4>
-                    &lt;%&ndash;<small class="font-bold">这里可以显示副标题。</small>&ndash;%&gt;
-                </div>
-                <div class="modal-body">
-
-                    <form class="form-horizontal m-t" id="_sales_save" style="margin-right: 30px;">
-
-
-                        <div class="form-group" id="data_1">
-                            <label class="col-sm-2 control-label">销售日期</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input id="srSaleDate" name="srSaleDate" onchange="dateadd()" type="text" class="form-control" required="" aria-required="true">
-                                </div>
-                            </div>
-                            &lt;%&ndash;<label class="col-sm-2 control-label">回款日期</label>
-                            <div class="col-sm-4" id="data_2">
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input id="srBackDate" name="srBackDate" type="text" class="form-control" required="" aria-required="true" value="2012-11-11">
-                                </div>
-                            </div>&ndash;%&gt;
-                            <label class="col-sm-2 control-label">回款截止日期</label>
-                            <div class="col-sm-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input name="srEndBackPayment" type="text" disabled class="form-control" required="" aria-required="true">
-                                    <input name="srEndBackPayment" type="hidden">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">是否回款</label>
-                            <div class="col-sm-4">
-                                <select id="srIsBack" name="srIsBack" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择是否回款</option>
-                                    <c:forEach items="${isBack}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label">税点</label>
-                            <div class="col-sm-4">
-                                <select id="srTax" name="srTax" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择税点</option>
-                                    <c:forEach items="${tax}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">销往省份</label>
-
-                            <div class="col-sm-4">
-                                <select id="srProvince" name="srProvince" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择城市</option>
-                                    <c:forEach items="${province}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label">产品个数</label>
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srGoodsNum" name="srGoodsNum" type="number" class="form-control" required="" aria-required="true">
-                                    <span class="input-group-addon">个</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">胶圈费</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srRubberAmount" name="srRubberAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
-                            <label class="col-sm-2 control-label">运费</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srFreight" name="srFreight" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">是否设备提成</label>
-                            <div class="col-sm-4">
-                                <select id="srIsDeviceAward" name="srIsDeviceAward" class="form-control" required="" aria-required="true">
-                                    <option value="-1">请选择是否设备提成</option>
-                                    <c:forEach items="${isDeviceAward}" var="var">
-                                        <option value="${var.dataValue}">${var.dataName}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label">销售金额</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srSaleAmount" name="srSaleAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-sm-2 control-label">销售金额总额</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-group">
-                                    <input id="srSaleAllAmount" name="srSaleAllAmount" type="text" class="form-control float" required="" aria-required="true">
-                                    <span class="input-group-addon"><i class="fa fa-rmb"></i></span>
-                                </div>
-                            </div>
-
-                            <label class="col-sm-2 control-label">备注信息</label>
-                            <div class="col-sm-4">
-                                &lt;%&ndash;<input id="fpNote" name="fpNote" type="text" class="form-control" required="" aria-required="true">&ndash;%&gt;
-                                <div class="media-body">
-                                    <textarea id="srBak" name="srBak" class="form-control" placeholder="备注信息..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button class="btn btn-primary" type="button" onclick="save();" id="modal_add">新增</button>
-                    <button class="btn btn-warning" type="button" onclick="update();" id="modal_update">更新</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>--%>
 <!-- 全局js -->
 <script src="<%=path%>/static/hplus/js/jquery.min.js?v=2.1.4"></script>
 <script src="<%=path%>/static/hplus/js/bootstrap.min.js?v=3.3.6"></script>
@@ -488,10 +283,19 @@
         });
 
     });
-</script>
-<script type="text/javascript">
-    /*var testBsSuggest = $("#test").bsSuggest({
-        url: "sales/selectPeo",
+    window.onload = function(){
+        var inputs = document.getElementsByTagName("input");
+        for(i=0;i<inputs.length;i++){
+            inputs[i].onblur = function(){
+                var srSaleAllAmount = document.getElementById("srSaleAllAmount").value;
+                var srRubberAmount = document.getElementById("srRubberAmount").value;
+                var srFreight = document.getElementById("srFreight").value;
+                document.getElementById("srSaleAmount").value = (srSaleAllAmount*1-srRubberAmount*1)/1.17 - srFreight*1;
+            }
+        }
+    }
+   /* var testBsSuggest = $("#test").bsSuggest({
+        url: "static/js/data.json",
         /!*effectiveFields: ["userName", "shortAccount"],
          searchFields: [ "shortAccount"],
          effectiveFieldsAlias:{userName: "姓名"},*!/
@@ -505,6 +309,7 @@
         console.log("onUnsetSelectValue");
     });*/
     var proSuggest = $("#test").bsSuggest({
+        url: 'sales/selectPeo?code=utf-8',
         indexId: 0, //data.value 的第几个数据，作为input输入框的内容
         indexKey: 1, //data.value 的第几个数据，作为input输入框的内容
         allowNoKeyword: false, //是否允许无关键字时请求数据
@@ -517,22 +322,16 @@
             dep: "部门"
         },
         showHeader: true,
-        url: 'sales/selectPeo',
+
         /*优先从url ajax 请求 json 帮助数据，注意最后一个参数为关键字请求参数*/
         /*如果从 url 获取数据，并且需要跨域，则该参数必须设置*/
         processData: function (json) { // url 获取数据时，对数据的处理，作为 getData 的回调函数
             var i, len, data = {
                 value: []
             };
-
-
-
-
-
             if (!json || !json.result || json.result.length == 0) {
                 return false;
             }
-
             //console.log(json);
             len = json.result.length;
 

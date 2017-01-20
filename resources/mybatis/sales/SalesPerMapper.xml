@@ -2,23 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SalesPerMapper">
 
-
+    <resultMap type="com.fh.entity.sales.Vasion" id="SalesPerMapper">
+        <result property="roleName" column="role_name"/>
+        <result property="userName" column="userName"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         INSERT INTO sale_room (
         sr_create_date,
-        sr_back_date,
         sr_rubber_amount,
         sr_sale_all_amount,
         user_id,
-        bak1,
         sr_goods_num,
         sr_tax,
         sr_sale_amount,
         sr_state,
         sr_end_back_payment,
         sr_create_user,
-        bak2,
         sr_freight,
         sr_is_back,
         del_flag,
@@ -29,44 +30,41 @@
         )
         VALUES
         (
-        '2017-01-12 12:23:22',
-        '2017-01-12',
+        #{srCreateDate},
+        #{srRubberAmount},
+        #{srSaleAllAmount},
         '1',
+        #{srGoodsNum},
+        #{srTax},
+        #{srSaleAmount},
         '1',
+        #{srEndBackPayment},
+        #{srCreateUser},
+        #{srFreight},
+        #{srIsBack},
         '1',
-        NULL,
-        '1',
-        '1',
-        '1',
-        '1',
-        '2017-01-26',
-        '1',
-        NULL,
-        '1',
-        '1',
-        '1',
-        '1',
-        '1',
-        '1',
-        '2017-01-19'
+        #{srBak},
+        #{srIsDeviceAward},
+        #{srProvince},
+        #{srSaleDate}
         );
     </insert>
+
     <select id="datalistPage" parameterType="page" resultType="pd">
         select * from (
-            SELECT  s.USERNAME AS payName,sr.*
-            FROM sale_room sr
-            INNER JOIN sys_user s ON s.USER_ID = sr.user_id
-            WHERE sr.del_flag = 1
-            ORDER BY sr.sr_create_date DESC
+        SELECT  s.USERNAME AS payName,sr.*
+        FROM sale_room sr
+        INNER JOIN sys_user s ON s.USER_ID = sr.user_id
+        WHERE sr.del_flag = 1
+        ORDER BY sr.sr_create_date DESC
         ) a
     </select>
     <!--查询销售人员-->
-    <select id="selectPeo" resultType="pd">
+    <select id="selectPeo" resultMap="SalesPerMapper" resultType="List">
         SELECT sr.role_name,su.Name AS userName,su.user_id AS userId
         FROM
         sys_user su
         INNER JOIN sys_role sr ON su.`ROLE_ID` = sr.`ROLE_ID`
         WHERE sr.`ROLE_ID`='bb676ea2f86f482bad8a1cfaf6b141fe'
     </select>
-
 </mapper>
